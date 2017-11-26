@@ -1,20 +1,26 @@
 $(document).ready(function() {
-    var cat1 = "Bob";
-    var cat2 = "Bill";
+    // List stuff
+    var $listElem = $('#cat-list');
+    var $nameElem = $('#catName');
+    var $targetElem = $('#target');
+    var $countElem = $('#catCounter');
+    var nums = [1,2,3];
 
-    $("#name1").text(cat1);
-    $("#name2").text(cat2);
+    for (var i = 0; i<nums.length; i++) {
+        var num = nums[i];
+        $listElem.append('<li>'+num+'</li>');
+    };
 
-    var clicky1 = 0;
-    var clicky2 = 0;
+    // Cat stuff
+    var cat = "Bob";
 
-    $("#target1").click(function() {
-        clicky1 += 1;
-        $("#counter1").text(clicky1);
+    $nameElem.text(cat);
+
+    var clicky = 0;
+
+    $targetElem.click(function() {
+        clicky += 1;
+        $countElem.text(clicky);
     });
 
-    $("#target2").click(function() {
-        clicky2 += 1;
-        $("#counter2").text(clicky2);
-    });
 });

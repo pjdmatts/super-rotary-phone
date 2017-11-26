@@ -5,17 +5,17 @@
     flex-direction: column;
 }
 
-.target {
-    margin-left: 10px;
-    margin-right: 10px;
-}
-
 .targetCont {
     display: flex;
     flex-direction: row;
 }
 
-.countCont {
+.target {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.catCounter {
     margin-top: 20px;
-    font-size: 40px;
+    font-size: 20px;
 }
