@@ -25,9 +25,8 @@
     width: 200px;
 }
 
-#adminCont {
+.form-container {
     display: flex;
     flex-direction: column;
     width: 250px;
-    visibility: hidden;
 }

@@ -99,9 +99,9 @@ $(function() {
 
     var viewAdminButton = {
         init: function(){
-            this.$adminElem = $('#adminClick');
-            this.$adminElem.click(function() {
-                console.log('This sucks');
+            this.$adminbtn = $('#admin-btn');
+            this.$adminbtn.click(function(){
+                console.log('Admin!');
             });
 
         },
