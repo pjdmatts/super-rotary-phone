@@ -62,10 +62,16 @@ $(function() {
         },
         cancelAdmin: function() {
             model.adminVisible = false;
-            viewAdminForm.render();
+            viewAdminButton.init();
         },
         getAdminStatus: function () {
             return model.adminVisible;
+        },
+        modCat: function (newName, newUrl, newClicks) {
+            cat = model.getCat();
+            cat.name = newName;
+            cat.picture = newUrl;
+            cat.catCount = newClicks;
         }
     };
 
@@ -76,18 +82,18 @@ $(function() {
         render: function() {
             $listElem = $('#cat-list');
             var $elem = '';
+            var catId = 0;
             octopus.getCats().forEach(function(cat) {
-                $elem = $('<li>' + cat.name + '</li>');
+                $elem = $('<li id="catName'+catId+'">' + cat.name + '</li>');
                 $elem.click((function(catCopy) {
                     return function() {
                         octopus.setCat(catCopy);
                         viewWindow.render();
                     };
                 })(cat));
+                catId += 1;
                 $listElem.append($elem);
             });
-
-
         }
     };
 
@@ -107,12 +113,16 @@ $(function() {
             this.$nameElem.text(theCat.name);
             this.$imageElem.attr("src", theCat.picture);
             this.$countElem.text(theCat.catCount);
+            if(octopus.getAdminStatus()) {
+                octopus.getAdmin();
+            }
         }
     }
 
     var viewAdminButton = {
         init: function(){
             this.$adminbtn = $('#admin-btn');
+            $('.adminSection').hide();
             this.$adminbtn.click(function(){
                 octopus.getAdmin();
             });
@@ -126,12 +136,28 @@ $(function() {
             this.$adminName = $('#admin-name');
             this.$adminUrl = $('#admin-url');
             this.$adminClick = $('#admin-clicks');
+            this.$cancel = $('#cancel');
+            this.$save = $('#save');
+            this.$cancel.click(function(){
+                octopus.cancelAdmin();
+            });
+            this.$save.click(function(){
+                var newName = $('#admin-name').val();
+                var newUrl = $('#admin-url').val();
+                var newClicks = $('#admin-clicks').val();
+                octopus.modCat(newName, newUrl, newClicks);
+                viewWindow.render();
+                var theCat = octopus.getCat();
+                //TODO: in the save event listener update the list with the new names
+                //Do not add the new names - update them.
+            });
         },
         render: function(){
             var theCat = octopus.getCat();
-            this.$adminName.text(theCat.name);
-            this.$adminUrl.text(theCat.picture);
-            this.$adminClick.text(theCat.catCount);
+            $('.adminSection').show();
+            this.$adminName.val(theCat.name);
+            this.$adminUrl.val(theCat.picture);
+            this.$adminClick.val(theCat.catCount);
         }
     }
     octopus.init();
