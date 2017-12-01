@@ -30,3 +30,7 @@
     flex-direction: column;
     width: 250px;
 }
+
+#adminView {
+    visibility: visible;
+}

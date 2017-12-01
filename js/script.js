@@ -1,6 +1,7 @@
 $(function() {
     var model = {
         currentCat: null,
+        adminVisible: false,
         cats: [{
             name: "Bob",
             catCount: 0,
@@ -40,6 +41,7 @@ $(function() {
             viewList.init();
             viewWindow.init();
             viewAdminButton.init();
+            viewAdminForm.init();
         },
         getCats: function() {
             return model.getAllCats();
@@ -53,6 +55,17 @@ $(function() {
         incrementCounter: function() {
             model.currentCat.catCount++;
             viewWindow.render();
+        },
+        getAdmin: function() {
+            model.adminVisible = true;
+            viewAdminForm.render();
+        },
+        cancelAdmin: function() {
+            model.adminVisible = false;
+            viewAdminForm.render();
+        },
+        getAdminStatus: function () {
+            return model.adminVisible;
         }
     };
 
@@ -101,21 +114,24 @@ $(function() {
         init: function(){
             this.$adminbtn = $('#admin-btn');
             this.$adminbtn.click(function(){
-                console.log('Admin!');
+                octopus.getAdmin();
             });
-
-        },
-        render: function() {
 
         }
     }
 
     var viewAdminForm = {
         init: function(){
-
+            this.$adminView = $('#adminView');
+            this.$adminName = $('#admin-name');
+            this.$adminUrl = $('#admin-url');
+            this.$adminClick = $('#admin-clicks');
         },
         render: function(){
-
+            var theCat = octopus.getCat();
+            this.$adminName.text(theCat.name);
+            this.$adminUrl.text(theCat.picture);
+            this.$adminClick.text(theCat.catCount);
         }
     }
     octopus.init();
