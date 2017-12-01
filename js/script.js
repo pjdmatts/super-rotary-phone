@@ -39,6 +39,7 @@ $(function() {
             model.currentCat = model.cats[0]
             viewList.init();
             viewWindow.init();
+            viewAdminButton.init();
         },
         getCats: function() {
             return model.getAllCats();
@@ -95,28 +96,27 @@ $(function() {
             this.$countElem.text(theCat.catCount);
         }
     }
+
+    var viewAdminButton = {
+        init: function(){
+            this.$adminElem = $('#adminClick');
+            this.$adminElem.click(function() {
+                console.log('This sucks');
+            });
+
+        },
+        render: function() {
+
+        }
+    }
+
+    var viewAdminForm = {
+        init: function(){
+
+        },
+        render: function(){
+
+        }
+    }
     octopus.init();
 });
-// List stuff
-
-
-
-
-
-
-//     for (var i = 0; i < cats.length; i++) {
-//         var cat = cats[i];
-//         var $elem = $('<li>' + cat.name + '</li>');
-//         $elem.click((function(catCopy) {
-//             return function() {
-//                 $nameElem.text(catCopy.name);
-//                 $imageElem.attr("src", catCopy.picture);
-//                 var clicky = 0;
-//                 $targetElem.click(function() {
-//                     clicky += 1;
-//                     $countElem.text(clicky);
-//                 });
-//             };
-//         })(cat));
-//         $listElem.append($elem);
-//     }

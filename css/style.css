@@ -8,6 +8,7 @@
 .targetCont {
     display: flex;
     flex-direction: row;
+    width: 200px;
 }
 
 .target {
@@ -18,4 +19,15 @@
 .catCounter {
     margin-top: 20px;
     font-size: 20px;
+}
+
+#catPic {
+    width: 200px;
+}
+
+#adminCont {
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    visibility: hidden;
 }
