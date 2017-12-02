@@ -148,6 +148,12 @@ $(function() {
                 octopus.modCat(newName, newUrl, newClicks);
                 viewWindow.render();
                 var theCat = octopus.getCat();
+                var theCats = octopus.getCats();
+                var catIndex = theCats.indexOf(theCat);
+                console.log(catIndex);
+                var newId = '#catName'+catIndex;
+                console.log(newId);
+                $(newId).text(theCat.name);
                 //TODO: in the save event listener update the list with the new names
                 //Do not add the new names - update them.
             });
